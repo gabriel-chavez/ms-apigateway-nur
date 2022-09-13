@@ -1,0 +1,77 @@
+{
+  "Aggregates": [
+    {
+      "UpstreamPathTemplate": "/api/user-posts/{id}",
+      "RouteKeys": [ "user", "posts" ],
+      "Aggregator": "UserPostsAggregator"
+    }
+    ,
+    {
+      "UpstreamPathTemplate": "/api/user-posts/",
+      "RouteKeys": [ "users", "posts" ],
+      "Aggregator": "UsersPostsAggregator"
+    }
+
+  ],
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/users/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/users/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "jsonplaceholder.typicode.com",
+          "Port": 80
+        }
+      ],
+      "Key": "user"
+    },
+    {
+      "UpstreamPathTemplate": "/api/posts/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/posts/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "jsonplaceholder.typicode.com",
+          "Port": 80
+        }
+      ],
+      "Key": "post"
+    },
+    /*****/
+    {
+      "UpstreamPathTemplate": "/api/Posts/",
+      "DownstreamPathTemplate": "/posts/",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "jsonplaceholder.typicode.com",
+          "Port": 443
+        }
+      ],
+      "Key": "posts"
+    },
+    {
+      "UpstreamPathTemplate": "/api/users/",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/users/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "jsonplaceholder.typicode.com",
+          "Port": 80
+        }
+      ],
+      "Key": "users"
+    }
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7027/"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8fKFtHjXcv61b2ZbRUJhJBvTLDR0HZVssd0cfnpm+f4=",
+  "Source": "ApiGatewayEjemplo",
+  "BasePath": "_content/ApiGatewayEjemplo",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
