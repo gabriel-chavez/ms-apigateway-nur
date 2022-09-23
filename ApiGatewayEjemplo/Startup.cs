@@ -19,6 +19,10 @@ namespace ApiGatewayEjemplo
                 .AddDelegatingHandler<LogDelegatingHandler>(true)
                 .AddSingletonDefinedAggregator<UserPostsAggregator>()
                 .AddSingletonDefinedAggregator<UsersPostsAggregator>()
+                .AddSingletonDefinedAggregator<ReservaDeudaAggregator>()
+                .AddSingletonDefinedAggregator<CheckInVueloAggregator>()
+                .AddSingletonDefinedAggregator<ReservasSinCheckInAggregator>()
+                
                 .AddDelegatingHandler<NoEncodingHandler>(true); 
 
 

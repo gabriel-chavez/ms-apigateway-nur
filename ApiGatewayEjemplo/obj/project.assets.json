@@ -702,11 +702,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayEjemplo\\ApiGatewayEjemplo\\ApiGatewayEjemplo.csproj",
+      "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayMicroservicios\\ApiGatewayEjemplo\\ApiGatewayEjemplo.csproj",
       "projectName": "ApiGatewayEjemplo",
-      "projectPath": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayEjemplo\\ApiGatewayEjemplo\\ApiGatewayEjemplo.csproj",
+      "projectPath": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayMicroservicios\\ApiGatewayEjemplo\\ApiGatewayEjemplo.csproj",
       "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayEjemplo\\ApiGatewayEjemplo\\obj\\",
+      "outputPath": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayMicroservicios\\ApiGatewayEjemplo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -8,7 +8,12 @@ namespace ApiGatewayEjemplo.Handlers
         {
             Console.WriteLine("Request:{0}", request.ToString());
 
+          
+
             var response = await base.SendAsync(request, cancellationToken);
+        
+
+
             return response;
         }
     }

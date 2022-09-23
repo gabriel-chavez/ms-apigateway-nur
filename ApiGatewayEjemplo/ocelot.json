@@ -1,20 +1,229 @@
 {
   "Aggregates": [
-    {
-      "UpstreamPathTemplate": "/api/user-posts/{id}",
-      "RouteKeys": [ "user", "posts" ],
-      "Aggregator": "UserPostsAggregator"
-    }
-    ,
-    {
-      "UpstreamPathTemplate": "/api/user-posts/",
-      "RouteKeys": [ "users", "posts" ],
-      "Aggregator": "UsersPostsAggregator"
-    }
 
+    {
+      "UpstreamPathTemplate": "/api/deuda-reserva/{id}",
+      "RouteKeys": [ "deudabuscar", "reservaparavencer" ],
+      "Aggregator": "ReservaDeudaAggregator"
+    },
+    {
+      "UpstreamPathTemplate": "/api/mscheckin/GetCheckInByVuelo/{id}",
+      "RouteKeys": [ "GetVueloById", "GetAllCheckIn" ],
+      "Aggregator": "CheckInVueloAggregator"
+    },
+    {
+      "UpstreamPathTemplate": "/api/mscheckin/GetReservasSinCheckIn",
+      "RouteKeys": [ "GetAllReserva", "GetAllCheckIn" ],
+      "Aggregator": "ReservasSinCheckInAggregator"
+    }
   ],
   "Routes": [
+    /***MS RESERVA***/
     {
+      "UpstreamPathTemplate": "/api/reserva/buscarreservasparavencer/",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/reserva/buscarreservasparavencer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8080
+        }
+      ],
+      "Key": "reservaparavencer"
+    },
+    {
+      "UpstreamPathTemplate": "/api/reserva/buscar/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/reserva/buscar?id={id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8080
+        }
+      ],
+      "Key": "reserva"
+    },
+    {
+      "UpstreamPathTemplate": "/api/reserva/crear",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/reserva/crear",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8080
+        }
+      ],
+      "Key": "pasajerobuscar"
+    },
+    {
+      "UpstreamPathTemplate": "/api/pasajero/crear/",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/pasajero/crear",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8080
+        }
+      ],
+      "Key": "pasajerocrear"
+    },
+    {
+      "UpstreamPathTemplate": "/api/pasajero/buscarpasajero?nrodoc={id1}&tipodoc={id2}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/pasajero/buscarpasajero?nrodoc={id1}&tipodoc={id2}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8080
+        }
+      ],
+      "Key": "pasajerobuscar"
+    },
+    
+
+    /***MS PAGO***/
+    {
+      "UpstreamPathTemplate": "/api/deuda/buscar/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/deuda/buscar?id={id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8081
+        }
+      ],
+      "Key": "deudabuscar"
+    },
+    {
+      "UpstreamPathTemplate": "/api/deuda/crear",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/deuda/crear",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8081
+        }
+      ],
+      "Key": "deudacrear"
+    },
+    {
+      "UpstreamPathTemplate": "/api/deuda/buscardeudabyreservaid/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/deuda/buscardeudabyreservaid?id={id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8081
+        }
+      ],
+      "Key": "deudabuscarporreserva"
+    },
+    {
+      "UpstreamPathTemplate": "/api/deuda/realizarpago",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/deuda/realizarpago",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8081
+        }
+      ],
+      "Key": "deudabuscarporreserva"
+    },
+    /**MS TRIPULACION**/
+    {
+      "UpstreamPathTemplate": "/api/tripulacion/crear",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/tripulacion/crear",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8082
+        }
+      ],
+      "Key": "tripulacioncrear"
+    },
+    // MS CHECKIN - GetAllReserva
+    {
+      "UpstreamPathTemplate": "/api/mscheckin/reserva",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/reserva",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8090
+        }
+      ],
+      "Key": "GetAllReserva"
+    },
+    //  MS CHECKIN - GetVueloById
+    {
+      "UpstreamPathTemplate": "/api/mscheckin/Vuelo/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/Vuelo/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8090
+        }
+      ],
+      "Key": "GetVueloById"
+    },
+    // MS CHECKIN - GetAllCheckIn
+    {
+      "UpstreamPathTemplate": "/api/mscheckin/checkin",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/checkin",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8090
+        }
+      ],
+      "Key": "GetAllCheckIn"
+    },
+    // MS CHECKIN - CreateCheckIn
+    {
+      "UpstreamPathTemplate": "/api/mscheckin/checkin",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/api/checkin",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8090
+        }
+      ],
+      "Key": "CreateCheckIn"
+    }
+    /*{
       "UpstreamPathTemplate": "/api/users/{id}",
       "UpstreamHttpMethod": [ "GET" ],
 
@@ -42,7 +251,7 @@
       "Key": "post"
     },
     /*****/
-    {
+    /* {
       "UpstreamPathTemplate": "/api/Posts/",
       "DownstreamPathTemplate": "/posts/",
       "UpstreamHttpMethod": [ "GET" ],
@@ -68,7 +277,7 @@
         }
       ],
       "Key": "users"
-    }
+    }*/
 
   ],
   "GlobalConfiguration": {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Jva8ESSQRT6+4fPt4JC009j0ofx4c/5aknlyz2Er0Gj7UFO8hfXnwfUAOFptF39zSA1KKmOhEK27ycuBybiDxw==",
+  "dgSpecHash": "919V3F2a6jd/0sFWZ7JbTPJ+lu3tc4h/xaVtHiov6mcgaeTbf+QNlqFwP4kz9Ds8l3UIOtLRz2EFhDmWUqjWWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayEjemplo\\ApiGatewayEjemplo\\ApiGatewayEjemplo.csproj",
+  "projectFilePath": "C:\\Users\\Gabriel\\Documents\\2.- Diplomado_Arquitectura_Microservicios\\Unidad 6 - Comunicacion entre Microservicios\\ApiGatewayMicroservicios\\ApiGatewayEjemplo\\ApiGatewayEjemplo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gabriel\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\Gabriel\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.1\\microsoft.aspnetcore.jsonpatch.6.0.1.nupkg.sha512",
