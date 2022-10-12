@@ -18,6 +18,47 @@
     }
   ],
   "Routes": [
+
+    /**MS REGISTRO DE AERONAVE**/
+
+    /**MS REGISTRO VUELOS***/
+
+    {
+      "UpstreamPathTemplate": "/api/vuelo/",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/vuelo/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8182
+        }
+      ],
+      "Key": "vuelolistar"
+    },
+    {
+      "UpstreamPathTemplate": "/api/vuelo/",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      //"RouteClaimRequirement": {
+      //  "Permission_ADMIN_INVENTORY": "ADMIN_INVENTORY"
+      //} 
+
+      "DownstreamPathTemplate": "/api/vuelo/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8182
+        }
+      ],
+      "Key": "vuelocrear"
+    },
+
     /***MS RESERVA***/
     {
       "UpstreamPathTemplate": "/api/reserva/buscarreservasparavencer/",
@@ -89,7 +130,7 @@
       ],
       "Key": "pasajerobuscar"
     },
-    
+
 
     /***MS PAGO***/
     {
@@ -222,6 +263,20 @@
         }
       ],
       "Key": "CreateCheckIn"
+    },
+    {
+      "UpstreamPathTemplate": "/api/security/login",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/api/security/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178/",
+          "Port": 8183
+        }
+      ],
+      "Key": "login"
     }
     /*{
       "UpstreamPathTemplate": "/api/users/{id}",

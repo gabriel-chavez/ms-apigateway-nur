@@ -1,8 +1,11 @@
 ﻿using ApiGatewayEjemplo.Aggregator;
 using ApiGatewayEjemplo.Handlers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using System.Text;
 
 namespace ApiGatewayEjemplo
 {
@@ -15,6 +18,22 @@ namespace ApiGatewayEjemplo
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            var secretKey = Configuration.GetValue<string>("JwtOptions:SecretKey");
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
+                        ClockSkew = new System.TimeSpan(0)
+                    };
+                });
+                
+
+
             services.AddOcelot()
                 .AddDelegatingHandler<LogDelegatingHandler>(true)
                 .AddSingletonDefinedAggregator<UserPostsAggregator>()

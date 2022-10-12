@@ -1,0 +1,7 @@
+﻿services:
+  api-gateway:
+    image: gabrielchavezr/api-gateway-aerolinea:v1
+    ports:
+      - "8184:80"
+      - "4439:443"
+    
