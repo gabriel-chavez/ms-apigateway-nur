@@ -264,7 +264,9 @@
       ],
       "Key": "CreateCheckIn"
     },
+    // MS SECURITY
     {
+
       "UpstreamPathTemplate": "/api/security/login",
       "UpstreamHttpMethod": [ "POST" ],
 
@@ -272,7 +274,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "34.152.30.178/",
+          "Host": "34.152.30.178",
           "Port": 8183
         }
       ],

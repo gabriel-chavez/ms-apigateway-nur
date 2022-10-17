@@ -2,6 +2,7 @@
 using ApiGatewayEjemplo.Handlers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
@@ -18,6 +19,24 @@ namespace ApiGatewayEjemplo
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            var allowOrigins = Configuration.GetValue<string>("AllowOrigins");
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.WithOrigins(allowOrigins)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                      .AllowCredentials();
+                });
+                options.AddPolicy("AllowHeaders", builder =>
+                {
+                    builder.WithOrigins(allowOrigins)
+                            .WithHeaders(HeaderNames.ContentType, HeaderNames.Server, HeaderNames.AccessControlAllowHeaders, HeaderNames.AccessControlExposeHeaders, "x-custom-header", "x-path", "x-record-in-use", HeaderNames.ContentDisposition);
+                });
+            });
+
+
             var secretKey = Configuration.GetValue<string>("JwtOptions:SecretKey");
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -40,8 +59,7 @@ namespace ApiGatewayEjemplo
                 .AddSingletonDefinedAggregator<UsersPostsAggregator>()
                 .AddSingletonDefinedAggregator<ReservaDeudaAggregator>()
                 .AddSingletonDefinedAggregator<CheckInVueloAggregator>()
-                .AddSingletonDefinedAggregator<ReservasSinCheckInAggregator>()
-                
+                .AddSingletonDefinedAggregator<ReservasSinCheckInAggregator>()                
                 .AddDelegatingHandler<NoEncodingHandler>(true); 
 
 
@@ -54,6 +72,7 @@ namespace ApiGatewayEjemplo
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
