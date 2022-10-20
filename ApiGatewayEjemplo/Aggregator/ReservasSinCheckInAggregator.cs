@@ -17,11 +17,11 @@ namespace ApiGatewayEjemplo.Aggregator
             var reserva_Str = await responses[0].Items.DownstreamResponse().Content.ReadAsStringAsync();
             var checkin_Str = await responses[1].Items.DownstreamResponse().Content.ReadAsStringAsync();
 
-            var reserva_lista = JsonConvert.DeserializeObject<List<ReservaCheckinDto>>(reserva_Str);
+            var reserva_lista = JsonConvert.DeserializeObject<List<ApiGatewayEjemplo.Dto.Checkin.ReservaDto>>(reserva_Str);
             var checkIn_lista = JsonConvert.DeserializeObject<List<CheckInDto>>(checkin_Str);
 
 
-            var result = new List<ReservaCheckinDto>();
+            var result = new List<ReservaSinCheckInDto>();
             foreach (var r in reserva_lista)
             {
                 int cant = 0;
@@ -31,7 +31,13 @@ namespace ApiGatewayEjemplo.Aggregator
                         cant++;
                 }
                 if (cant == 0)
-                    result.Add(r);
+                    result.Add(new ReservaSinCheckInDto()
+                    {
+                        id = r.Id,
+                        nroReserva = r.NroReserva,
+                        hora = r.Hora,
+                        vueloId = r.VueloId
+                    });
             }
 
             var contentBody = JsonConvert.SerializeObject(result);
@@ -43,5 +49,6 @@ namespace ApiGatewayEjemplo.Aggregator
 
             return new DownstreamResponse(stringContent, System.Net.HttpStatusCode.OK, new List<KeyValuePair<string, IEnumerable<string>>>(), "OK");
         }
+
     }
 }

@@ -15,11 +15,155 @@
       "UpstreamPathTemplate": "/api/mscheckin/GetReservasSinCheckIn",
       "RouteKeys": [ "GetAllReserva", "GetAllCheckIn" ],
       "Aggregator": "ReservasSinCheckInAggregator"
+    },
+    {
+      "UpstreamPathTemplate": "/api/aeronaves/ObtenerDatosAeronave/{id}",
+      "RouteKeys": [ "aeronaveobtener", "aeropuertolistar", "modeloaeronavelistar" ],
+      "Aggregator": "AeronaveObtnerDatosAggregator"
+    },
+    {
+      "UpstreamPathTemplate": "/api/aeronaves/ListarDatosAeronave/",
+      "RouteKeys": [ "aeronavelistar", "aeropuertolistar", "modeloaeronavelistar" ],
+      "Aggregator": "AeronaveListarDatosAggregator"
     }
   ],
   "Routes": [
 
     /**MS REGISTRO DE AERONAVE**/
+    /*Aeronave*/
+    {
+      "UpstreamPathTemplate": "/api/Aeronave/",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/Aeronave/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "aeronavelistar"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Aeronave/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/Aeronave/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "aeronaveobtener"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Aeronave/",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/api/Aeronave/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "aeronavecrear"
+    },
+    /*Aeropuerto*/
+    {
+      "UpstreamPathTemplate": "/api/Aeropuerto/",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/Aeropuerto/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "aeropuertolistar"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Aeropuerto/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/Aeropuerto/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "aeropuertobtener"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Aeropuerto/",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/api/Aeropuerto/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "aeropuertocrear"
+    },
+    /*Modelo aeronave*/
+    {
+      "UpstreamPathTemplate": "/api/ModeloAeronave/",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/ModeloAeronave/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "modeloaeronavelistar"
+    },
+    {
+      "UpstreamPathTemplate": "/api/ModeloAeronave/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/ModeloAeronave/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "modeloaeronaveobtener"
+    },
+    {
+      "UpstreamPathTemplate": "/api/ModeloAeronave/",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/api/ModeloAeronave/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "34.152.30.178",
+          "Port": 8181
+        }
+      ],
+      "Key": "modeloaeronavecrear"
+    },
+
+
+
+
+
 
     /**MS REGISTRO VUELOS***/
 
@@ -130,7 +274,20 @@
       ],
       "Key": "pasajerobuscar"
     },
+    {
+      "UpstreamPathTemplate": "/api/vuelo/buscarvuelos?origen={id1}&destino={id2}",
+      "UpstreamHttpMethod": [ "GET" ],
 
+      "DownstreamPathTemplate": "/vuelo/buscarvuelos?origen={id1}&destino={id2}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8080
+        }
+      ],
+      "Key": "buscarvuelos"
+    },
 
     /***MS PAGO***/
     {
@@ -264,6 +421,21 @@
       ],
       "Key": "CreateCheckIn"
     },
+    //  MS CHECKIN - GetCheckInById
+    {
+      "UpstreamPathTemplate": "/api/mscheckin/checkin/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+
+      "DownstreamPathTemplate": "/api/checkin/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "159.223.144.204",
+          "Port": 8090
+        }
+      ],
+      "Key": "GetCheckInById"
+    },
     // MS SECURITY
     {
 
@@ -280,6 +452,7 @@
       ],
       "Key": "login"
     }
+
     /*{
       "UpstreamPathTemplate": "/api/users/{id}",
       "UpstreamHttpMethod": [ "GET" ],

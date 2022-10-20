@@ -42,6 +42,8 @@ namespace ApiGatewayEjemplo
                 .AddSingletonDefinedAggregator<ReservaDeudaAggregator>()
                 .AddSingletonDefinedAggregator<CheckInVueloAggregator>()
                 .AddSingletonDefinedAggregator<ReservasSinCheckInAggregator>()
+                .AddSingletonDefinedAggregator<AeronaveObtnerDatosAggregator>()
+                .AddSingletonDefinedAggregator<AeronaveListarDatosAggregator>()
                 
                 .AddDelegatingHandler<NoEncodingHandler>(true); 
 
